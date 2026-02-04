@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "StromNow",
-    "slug": "StromNow App",
+    "name": "StromNowDev",
+    "slug": "StromNow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/stromNowAppLogo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.stromnow.dev"
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +19,12 @@
         "monochromeImage": "./assets/images/stromnowlogo1.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.stromnow.dev",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "output": "static",
@@ -26,6 +32,13 @@
     },
     "plugins": [
       "expo-router",
+      "@rnmapbox/maps",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Show current location on map."
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -42,6 +55,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0698cc10-aabc-487f-b0c9-9cf77debe0f8"
+      }
+    },
+    "owner": "goldinnovation"
   }
 }
