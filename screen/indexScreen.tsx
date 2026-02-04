@@ -1,8 +1,8 @@
 import { IndexLoginBtnComponent } from '@/components/index/IndexLoginBtnComponent';
 import { IndexLogoComponent } from '@/components/index/IndexLogoComponent';
-import { useIndexNavHook } from '@/hooks/index/useIndexNavHook';
 import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
+import useIndexNavHook from '@/hooks/index/useIndexNavHook';
 
 const IndexScreen = () => {
   const { handleLoginNavigation } = useIndexNavHook();

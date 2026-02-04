@@ -1,18 +1,31 @@
-import { useRouter } from 'expo-router';
-import { useNavigation } from "@react-navigation/native";
+import { setNavLoadingAction } from "@/store/actions/navLoadingAction";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ParamListBase } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
 
+const useIndexNavHook = () => {
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const isNavigating = useRef(false);
+   
+    const handleLoginNavigation = () => {
+        if (isNavigating.current) return;
+        isNavigating.current = true;
+        dispatch(setNavLoadingAction(true));
+        router.replace('/(tabs)/Map');
 
-export function useIndexNavHook() {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+        setTimeout(() => {
+            isNavigating.current = false;
+            dispatch(setNavLoadingAction(false));
+        }, 3000);
+    }
 
-
-
-  const handleLoginNavigation = () => {
-  };
-
-  return {
-    handleLoginNavigation,
-  };
+    return {
+        handleLoginNavigation
+    }
 }
+
+export default useIndexNavHook;
