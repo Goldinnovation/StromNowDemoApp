@@ -1,4 +1,4 @@
-import MapFlashbackComponent from '@/components/map/MapFlashbackComponent';
+import FlashbackComponent from '@/components/flashback/FlashbackComponent';
 import MapboxComponent from '@/components/map/MapboxComponent';
 import { StyleSheet, View } from 'react-native';
 
@@ -24,7 +24,7 @@ const MapScreen = ({
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        <MapFlashbackComponent
+        <FlashbackComponent
           visible={flashback}
           status={flashbackStatus}
           message={flashbackMessage}

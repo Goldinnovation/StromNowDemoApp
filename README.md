@@ -1,50 +1,73 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## How to Set Up the Application (Development Team)
 
-## Get started
+###  Prerequisites:
 
-1. Install dependencies
+- Node.js (v18+ recommended)
+- npm 
+- Expo CLI
+- Android Studio (für Android Development)
+- EAS CLI (EAS Build)
 
+<br>
+
+### Steps:
+1. Clone the GitHub repository
+   ```bash
+   git clone <repo-url>
+   ```
+
+2. Navigate to the project root
+   ```bash
+   cd dojopix
+   ```
+
+3. Install dependencies
    ```bash
    npm install
    ```
 
-2. Start the app
-
+4. Run the Expo server
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+<br>
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Any assumptions you made or questions you had
 
-## Get a fresh project
+### Assumptions:
+- The API of chargetrip seems to be quite old
 
-When you're ready, run:
+### Questions: 
+- How can I improve the Architecture of the app for better maintainability and scalability?
+- How can I improve the Performance when it comes to rendering the map and the stations?
 
-```bash
-npm run reset-project
-```
+<br>
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
 
-To learn more about developing your project with Expo, look at the following resources:
+## Improvements with More Time
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+#### Error Handling
+- Implement error boundaries
+- Add retry logic for failed API calls
+- Improve user-friendly error messages across all screens
 
-## Join the community
+#### Performance Optimization
+- Optimize re-renders and component updates
 
-Join our community of developers creating universal apps.
+#### Testing
+- Add unit tests for hooks and utilities
+- Integration tests for API calls
+- E2E tests for critical user flows (navigation, location permissions, station loading)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+#### Type Safety
+- Replace `any` types with proper TypeScript interfaces
+- Create strict types for API responses and Redux state
+- Improve type safety across the codebase
+
+#### State Management
+- Implement proper loading/error states globally
+- Optimize Redux store structure

@@ -21,8 +21,8 @@ const useMapHook = () => {
   const [userLatitude, setUserLatitude] = useState<number | undefined>(undefined);
   const [userLongitude, setUserLongitude] = useState<number | undefined>(undefined);
   const [chargeStations, setChargeStations] = useState<any[] | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [flashback, setFlashback] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [flashback, setFlashback] = useState<boolean>(false);
   const [flashbackStatus, setFlashbackStatus] = useState<string | null>(null);
   const [flashbackMessage, setFlashbackMessage] = useState<string>('');
 

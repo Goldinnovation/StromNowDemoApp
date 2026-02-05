@@ -2,9 +2,11 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import CarIcon from '@/assets/icons/carIcon';
+import TabLoadingStationIcon from '@/assets/icons/tabloadingStationIcon';
+import TabPieChartIcon from '@/assets/icons/tabPieChartIcon';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,7 +14,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].text,
         headerShown: true,
         tabBarButton: HapticTab,
       }}>
@@ -20,14 +22,31 @@ export default function TabLayout() {
         name="Map"
         options={{
           title: 'Map',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: () => <TabLoadingStationIcon
+           size={28} color={Colors[colorScheme ?? 'light'].text } />,
+          tabBarIconStyle: {
+            marginTop: 15,
+            marginBottom: 5,
+            fontSize: 12,
+            marginLeft: 10,
+         
+          },
         }}
+       
       />
       <Tabs.Screen
         name="Analytics"
         options={{
           title: 'Analytics',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: () => <TabPieChartIcon size={28} color={Colors[colorScheme ?? 'light'].text } />,
+          tabBarIconStyle: {
+            marginTop: 15,
+            marginBottom: 5,
+            color: "black",
+            fontSize: 12,
+            fontWeight: "bold",
+         
+          },
         }}
       />
     </Tabs>

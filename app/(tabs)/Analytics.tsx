@@ -1,12 +1,28 @@
-import { View, Text } from 'react-native';
+import { View, Text } from "react-native";
+import useAnalyticsHook from "@/hooks/analytics/useAnalyticsHook";
+import AnalyticsScreen from "@/screen/analyticsScreen";
 
-
-const AnalyticsScreen = () => {
-    return (
-        <View>
-            <Text>Analytics</Text>
-        </View>
-    );
+const AnalyticsTab = () => {
+  const {
+    stationData,
+    piewidthAndHeight,
+    isLoading,
+    flashback,
+    flashbackStatus,
+    flashbackMessage,
+  } = useAnalyticsHook();
+  return (
+    <View className="flex-1 ">
+      <AnalyticsScreen
+        stationData={stationData}
+        piewidthAndHeight={piewidthAndHeight}
+        isLoading={isLoading}
+        flashback={flashback}
+        flashbackStatus={flashbackStatus}
+        flashbackMessage={flashbackMessage}
+      />
+    </View>
+  );
 };
 
-export default AnalyticsScreen;
+export default AnalyticsTab;

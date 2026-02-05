@@ -6,7 +6,7 @@ type MapFlashbackComponentProps = {
   message: string;
 };
 
-const MapFlashbackComponent = ({
+const FlashbackComponent = ({
   visible,
   status,
   message,
@@ -33,4 +33,4 @@ const MapFlashbackComponent = ({
   );
 };
 
-export default MapFlashbackComponent;
+export default FlashbackComponent;

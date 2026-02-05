@@ -1,7 +1,7 @@
 
 
 interface FlashbackMessageUtilsProps {
-  status: string;
+  status: string | null;
   message: string;
   setFlashback: (flashback: boolean) => void;
   setFlashbackStatus: (flashbackStatus: string | null) => void;
