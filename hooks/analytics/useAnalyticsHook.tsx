@@ -1,6 +1,6 @@
 import getChargeStationsAPI from "@/api/getChargeStationsAPI";
 import handleUserLocation from "@/handler/handleUserLocation";
-import FlashbackMessageUtils from "@/utils/map/FlashbackMessageComponent";
+import FlashbackMessageUtils from "@/utils/FlashbackMessageComponent";
 import { useEffect, useState } from "react";
 
 const useAnalyticsHook = () => {
