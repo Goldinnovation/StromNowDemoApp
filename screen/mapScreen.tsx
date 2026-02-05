@@ -1,53 +1,44 @@
-import { View, StyleSheet } from 'react-native';
-import Mapbox from '@rnmapbox/maps';
-import MarkerIcon from '@/assets/icons/markerIcon';
-
-
-
+import MapFlashbackComponent from '@/components/map/MapFlashbackComponent';
+import MapboxComponent from '@/components/map/MapboxComponent';
+import { StyleSheet, View } from 'react-native';
 
 interface MapScreenProps {
-    userLatitude: number;
-    userLongitude: number;
-    
+  userLatitude?: number;
+  userLongitude?: number;
+  chargeStations?: any[];
+  flashback: boolean;
+  flashbackStatus: string | null;
+  flashbackMessage: string;
+  Mapbox: any;
 }
-
-
 
 const MapScreen = ({
   userLatitude,
   userLongitude,
+  chargeStations,
+  Mapbox,
+  flashback,
+  flashbackStatus,
+  flashbackMessage,
 }: MapScreenProps) => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
-        {/* <Mapbox.MapView style={styles.map}  />
-         */}
+        <MapFlashbackComponent
+          visible={flashback}
+          status={flashbackStatus}
+          message={flashbackMessage}
+        />
 
-        <Mapbox.MapView
-          style={styles.map}
-          styleURL="mapbox://styles/mapbox/navigation-day-v1"
-          pitchEnabled={true}
-        >
-          <Mapbox.Camera
-            zoomLevel={14}
-            pitch={0}
-            centerCoordinate={
-              userLongitude && userLatitude
-                ? [userLongitude, userLatitude]
-                : [13.405, 52.52] // fallback (Berlin)
-            }
-          />
-
-          {/* User location marker */}
-          {userLongitude && userLatitude && (
-            <Mapbox.PointAnnotation
-              id="userMarker"
-              coordinate={[userLongitude, userLatitude]}
-            >
-              <MarkerIcon size={40} />
-            </Mapbox.PointAnnotation>
-          )}
-        </Mapbox.MapView>
+        <MapboxComponent
+          Mapbox={Mapbox}
+          userLatitude={userLatitude}
+          userLongitude={userLongitude}
+          chargeStations={chargeStations}
+          styleURL="mapbox://styles/mapbox/navigation-night-v1"
+          zoomLevel={14}
+          pitch={0}
+        />
       </View>
     </View>
   );
@@ -56,22 +47,23 @@ const MapScreen = ({
 
 const styles = StyleSheet.create({
     page: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     container: {
-     flex: 1,
-     height: '100%',
-     width: '100%',
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        position: 'relative',
     },
     map: {
-      flex: 1,
-      // backgroundColor: 'red',
-      height: '100%',
-      width: '100%',
+        flex: 1,
+        // backgroundColor: 'red',
+        height: '100%',
+        width: '100%',
     }
-  });
+});
 
 
 

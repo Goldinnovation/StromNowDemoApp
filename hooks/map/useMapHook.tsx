@@ -1,19 +1,37 @@
-import getChargeStationsAPI, { ChargeStation } from '@/api/getChargeStationsAPI';
+import getChargeStationsAPI from '@/api/getChargeStationsAPI';
 import handleUserLocation from '@/handler/handleUserLocation';
 import { useEffect, useState } from 'react';
+import Mapbox from '@rnmapbox/maps';
+import FlashbackMessageUtils from '@/utils/map/FlashbackMessageComponent';
+
+
+
+
+const ACCESS_TOKEN = process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
+Mapbox.setAccessToken(ACCESS_TOKEN);
+
+
+interface ChargeStation {
+  data: {
+    stationAround: any[];
+  }
+}
 
 const useMapHook = () => {
   const [userLatitude, setUserLatitude] = useState<number | undefined>(undefined);
   const [userLongitude, setUserLongitude] = useState<number | undefined>(undefined);
-  const [chargeStations, setChargeStations] = useState<ChargeStation[]>([]);
+  const [chargeStations, setChargeStations] = useState<any[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [flashback, setFlashback] = useState<boolean>(true);
+  const [flashbackStatus, setFlashbackStatus] = useState<string | null>(null);
+  const [flashbackMessage, setFlashbackMessage] = useState<string>('');
 
   useEffect(() => {
     const initializeMap = async () => {
       try {
         setIsLoading(true);
-        setError(null);
+     ;
+      
 
         // Get user location
         const userLocation = await handleUserLocation();
@@ -27,12 +45,39 @@ const useMapHook = () => {
         if (latitude && longitude) {
           const response = await getChargeStationsAPI(latitude, longitude);
 
-          console.log('response', response);
-          setChargeStations(response.stations);
+          if(response) {
+            const stationData  = JSON.stringify(response, null, 2)
+            const parsedData = JSON.parse(stationData).data.stationAround;
+            setChargeStations(parsedData);
+            FlashbackMessageUtils({
+              status: 'success',
+              message: 'Welcome to the StromNow',
+              setFlashback,
+              setFlashbackStatus,
+              setFlashbackMessage,
+            });
+          } else {
+            FlashbackMessageUtils({
+              status: 'error',
+              message: 'Failed to fetch charge stations. Please try again later.',
+              setFlashback,
+              setFlashbackStatus,
+              setFlashbackMessage,
+            });
+          }
+
+
+          
         }
       } catch (err) {
-        console.error('Error initializing map:', err);
-        setError(err instanceof Error ? err.message : 'Failed to initialize map');
+
+        FlashbackMessageUtils({
+          status: 'error',
+          message: 'Failed to initialize map',
+          setFlashback,
+          setFlashbackStatus,
+          setFlashbackMessage,
+        });
       } finally {
         setIsLoading(false);
       }
@@ -41,12 +86,16 @@ const useMapHook = () => {
     initializeMap();
   }, []);
 
+
   return {
     userLatitude,
     userLongitude,
-    chargeStations,
     isLoading,
-    error,
+    flashback,
+    flashbackStatus,
+    flashbackMessage,
+    Mapbox, 
+    chargeStations
   };
 };
 

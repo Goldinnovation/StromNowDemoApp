@@ -7,13 +7,26 @@ import MapScreen from '@/screen/mapScreen';
 
 
 const MapTab = () => {
-  const { userLatitude, userLongitude } = useMapHook();
-    return (
+  const { userLatitude, 
+    userLongitude, 
+    chargeStations, 
+    Mapbox,
+    flashback,
+    flashbackStatus,
+    flashbackMessage,
+  } = useMapHook();
+
+
+    return (  
     <View className='flex-1'>
       <MapScreen 
         userLatitude={userLatitude as number}
         userLongitude={userLongitude as number}
-      
+        chargeStations={chargeStations as any[]}
+        Mapbox={Mapbox}
+        flashback={flashback}
+        flashbackStatus={flashbackStatus}
+        flashbackMessage={flashbackMessage}
       />
     </View>
       
