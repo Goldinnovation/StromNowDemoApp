@@ -1,36 +1,26 @@
-import { View, Text, StyleSheet } from 'react-native';
+import MarkerIcon from '@/assets/icons/markerIcon';
+import useMapHook from '@/hooks/map/useMapHook';
 import Mapbox from '@rnmapbox/maps';
+import { StyleSheet, View } from 'react-native';
+import MapScreen from '@/screen/mapScreen';
 
 
 
-Mapbox.setAccessToken('<YOUR_ACCESSTOKEN>');
-
-const MabTab = () => {
+const MapTab = () => {
+  const { userLatitude, userLongitude } = useMapHook();
     return (
-        <View style={styles.page}>
-      <View style={styles.container}>
-        <Mapbox.MapView style={styles.map} />
-      </View>
+    <View className='flex-1'>
+      <MapScreen 
+        userLatitude={userLatitude as number}
+        userLongitude={userLongitude as number}
+      
+      />
     </View>
+      
     );
 };
 
 
-const styles = StyleSheet.create({
-    page: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    container: {
-      height: 300,
-      width: 300,
-    },
-    map: {
-      flex: 1
-    }
-  });
 
 
-
-export default MabTab;
+export default MapTab;

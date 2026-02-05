@@ -4,19 +4,22 @@
     "slug": "StromNow",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/stromNowAppLogo.png",
+    "icon": "./assets/images/stromNowAppLogo24.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.stromnow.dev"
+      "bundleIdentifier": "com.stromnow.dev",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#000000",
-        "foregroundImage": "./assets/images/stromnowlogo1.png",
-        "backgroundImage": "./assets/images/stromnowlogo1.png",
-        "monochromeImage": "./assets/images/stromnowlogo1.png"
+        "foregroundImage": "./assets/images/stromNowCanva.png",
+        "backgroundImage": "./assets/images/stromNowCanva.png",
+        "monochromeImage": "./assets/images/stromNowCanva.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -42,7 +45,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/stromnowlogo1.png",
+          "image": "./assets/images/stromNowLogo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000",
