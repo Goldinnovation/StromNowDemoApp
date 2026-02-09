@@ -27,10 +27,10 @@ const StationInfoComponent = ({ name, address }: StationInfoComponentProps) => {
     <View className="w-[60%] h-full flex-col justify-center items-center">
       {/* Name */}
       <View className="w-full h-[50%] flex-col justify-start items-center">
-        <View className="w-full h-[50%] flex-row justify-start p-1 items-end">
+        <View className="w-full h-[40%] flex-row justify-start p-1 items-end">
           <Text className="text-white text-md font-semibold">Name: </Text>
         </View>
-        <View className="w-full h-[50%] flex-row justify-start p-1 items-center">
+        <View className="w-full h-[60%] flex-row justify-start p-1 items-center">
           <Text className="text-white text-sm">{name}</Text>
         </View>
       </View>

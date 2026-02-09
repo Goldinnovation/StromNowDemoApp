@@ -1,35 +1,41 @@
 import * as Location from "expo-location"
-
+import { Platform } from "react-native";
 
 
 
 const handleUserLocation = async() => {
-    let {status} = await Location.requestForegroundPermissionsAsync();
-      if(status !== "granted"){
-          console.log('Please Grant Location Permission');
-          return
-      }
+  const { status } = await Location.requestForegroundPermissionsAsync();
+  if (status !== "granted") return;
 
-    const currentLocation = await Location.getCurrentPositionAsync();
-    // setLocation(currentLocation)
-    // console.log(currentLocation);
-    if(currentLocation){
-
-      const {latitude, longitude} = currentLocation.coords
-      const reverseGeoCedAdresse = await Location.reverseGeocodeAsync({
-        longitude,
-        latitude
-      })
-
-      const userData = {
-        latitude,
-        longitude,
-        reverseGeoCedAdresse
-      }
-
-     
-      return userData
+  // Check if location services are on
+  const enabled = await Location.hasServicesEnabledAsync();
+  if (!enabled) {
+    if (Platform.OS === 'android') {
+      await Location.enableNetworkProviderAsync();
     }
+  }
+
+  let currentLocation;
+  try {
+    currentLocation = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Balanced,
+    });
+  } catch {
+    try {
+      currentLocation = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Lowest,
+      });
+    } catch {
+      currentLocation = await Location.getLastKnownPositionAsync();
+    }
+  }
+
+  if (!currentLocation) {
+    // Fallback
+    console.log('No current location found, using fallback coordinates');
+    return { latitude: 52.479, longitude: 13.439, reverseGeoCedAdresse: [] };
+  }
+
 
      
 

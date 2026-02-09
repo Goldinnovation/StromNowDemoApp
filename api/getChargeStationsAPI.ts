@@ -17,6 +17,9 @@ export const getChargeStationsAPI = async (
   longitude: number,
   radius: number = 5000
 ): Promise<any> => {
+  console.log('latitude on getChargeStationsAPI', latitude);
+  console.log('longitude on getChargeStationsAPI', longitude);
+  console.log('radius on getChargeStationsAPI', radius);
   try {
     const response = await axios.post(
       BASE_URL, // Don't add /charge-stations - GraphQL has one endpoint
@@ -74,6 +77,7 @@ export const getChargeStationsAPI = async (
     );
 
 
+    console.log('response on getChargeStationsAPI', response.data);
    
     return response.data;
   } catch (error) {
