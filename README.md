@@ -19,7 +19,7 @@
 
 2. Navigate to the project root
    ```bash
-   cd dojopix
+   cd stromnowdemoapp
    ```
 
 3. Install dependencies
